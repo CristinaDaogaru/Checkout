@@ -10,6 +10,7 @@ namespace CheckoutApi.DataAccess.Contect.Interfaces
         DbSet<Basket> Baskets { get; set; }
         DbSet<ItemsInBasket> ItemsInBaskets { get; set; }
 
+        DbSet<T> Set<T>() where T : class;
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

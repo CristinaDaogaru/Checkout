@@ -13,6 +13,6 @@ namespace CheckoutApi.DataModels
         public int ItemId { get; set; }
 
         [ForeignKey("ItemId")]
-        public Item Items { get; set; }
+        public Item Item { get; set; }
     }
 }

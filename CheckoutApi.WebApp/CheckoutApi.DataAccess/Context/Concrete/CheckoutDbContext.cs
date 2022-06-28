@@ -1,11 +1,10 @@
 ﻿using CheckoutApi.DataAccess.Contect.Interfaces;
 using CheckoutApi.DataModels;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CheckoutApi.DataAccess.Contect.Concrete
 {
-    public class CheckoutDbContext : IdentityDbContext, ICheckoutDbContext
+    public class CheckoutDbContext : DbContext, ICheckoutDbContext
     {
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Item> Items { get; set; }
