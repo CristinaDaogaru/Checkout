@@ -1,9 +1,9 @@
 ﻿using CheckoutApi.DataAccess.Contect.Interfaces;
 using CheckoutApi.DataAccess.Repositories.Concrete;
 using CheckoutApi.DataAccess.Repositories.Interfaces;
-using CheckoutApi.DataAccess.UnitOfWork.Interfaces;
+using CheckoutApi.DataAccess.UnitOfWorkRelated.Interfaces;
 
-namespace CheckoutApi.DataAccess.UnitOfWork.Concrete
+namespace CheckoutApi.DataAccess.UnitOfWorkRelated.Concrete
 {
     public class UnitOfWork : IUnitOfWork
     {

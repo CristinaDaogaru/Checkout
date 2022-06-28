@@ -1,6 +1,6 @@
 ﻿using CheckoutApi.DataAccess.Repositories.Interfaces;
 
-namespace CheckoutApi.DataAccess.UnitOfWork.Interfaces
+namespace CheckoutApi.DataAccess.UnitOfWorkRelated.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
