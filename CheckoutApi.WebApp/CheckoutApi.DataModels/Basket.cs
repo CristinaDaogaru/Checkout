@@ -5,7 +5,7 @@ namespace CheckoutApi.DataModels
 {
     public class Basket : IEntity<int>
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         public decimal TotalSpentAmount { get; set; }
 
         public bool IsPaid { get; set; }

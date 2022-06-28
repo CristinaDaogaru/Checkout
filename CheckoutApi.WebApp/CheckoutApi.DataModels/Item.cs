@@ -4,7 +4,7 @@ namespace CheckoutApi.DataModels
 {
     public class Item : IEntity<int>
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
 

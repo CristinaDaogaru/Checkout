@@ -5,7 +5,7 @@ namespace CheckoutApi.DataModels
 {
     public class ItemsInBasket : IEntity<int>
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         public int BasketId { get; set; }
 
         [ForeignKey("BasketId")]
