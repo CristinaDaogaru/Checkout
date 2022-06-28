@@ -12,7 +12,7 @@ namespace CheckoutApi.DataModels
 
         public bool Close { get; set; }
 
-        public string CustomerId { get; set; }
+        public int CustomerId { get; set; }
 
         [ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }
