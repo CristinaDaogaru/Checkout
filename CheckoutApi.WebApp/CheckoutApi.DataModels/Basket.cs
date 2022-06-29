@@ -6,7 +6,6 @@ namespace CheckoutApi.DataModels
     public class Basket : IEntity<int>
     {
         public int ID { get; set; }
-        public decimal TotalSpentAmount { get; set; }
 
         public bool IsPaid { get; set; }
 
@@ -17,6 +16,6 @@ namespace CheckoutApi.DataModels
         [ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }
 
-        public virtual ICollection<ItemsInBasket> ItemsInBaskets { get; set; }
+        public virtual ICollection<ItemsInBasket> ItemsInBaskets { get; set; } = new List<ItemsInBasket>();
     }
 }

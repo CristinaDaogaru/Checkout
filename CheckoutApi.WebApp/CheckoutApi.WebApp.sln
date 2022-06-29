@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckoutApi.DataAccess", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Api.BussinessLogic", "Checkout.Api.BussinessLogic\Checkout.Api.BussinessLogic.csproj", "{9E83E623-C652-4F6E-9964-DDA91EB5B795}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutApi.Tests", "CheckoutApi.Tests\CheckoutApi.Tests.csproj", "{8E3BF6D7-CDFD-4AD9-8689-1ED67705DDCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutApi.Shared", "CheckoutApi.Shared\CheckoutApi.Shared.csproj", "{1FC36F30-E872-4311-94F5-1FDE70131583}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +39,10 @@ Global
 		{8E3BF6D7-CDFD-4AD9-8689-1ED67705DDCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E3BF6D7-CDFD-4AD9-8689-1ED67705DDCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E3BF6D7-CDFD-4AD9-8689-1ED67705DDCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FC36F30-E872-4311-94F5-1FDE70131583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FC36F30-E872-4311-94F5-1FDE70131583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FC36F30-E872-4311-94F5-1FDE70131583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FC36F30-E872-4311-94F5-1FDE70131583}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

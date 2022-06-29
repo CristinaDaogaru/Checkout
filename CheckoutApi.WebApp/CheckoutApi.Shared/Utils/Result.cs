@@ -1,4 +1,4 @@
-﻿namespace Checkout.Api.BussinessLogic.Utils
+﻿namespace CheckoutApi.Shared.Utils
 {
     public class Result
     {

@@ -1,5 +1,5 @@
 ﻿using Checkout.Api.BussinessLogic.Dtos.Request;
-using Checkout.Api.BussinessLogic.Utils;
+using CheckoutApi.Shared.Utils;
 
 namespace Checkout.Api.BussinessLogic.EndpointHandlers.Interfaces
 {

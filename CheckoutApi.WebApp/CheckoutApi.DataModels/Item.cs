@@ -8,6 +8,6 @@ namespace CheckoutApi.DataModels
         public string Name { get; set; }
         public decimal Price { get; set; }
 
-        public virtual ICollection<ItemsInBasket> ItemsInBaskets { get; set; }
+        public virtual ICollection<ItemsInBasket> ItemsInBaskets { get; set; } = new List<ItemsInBasket>();
     }
 }

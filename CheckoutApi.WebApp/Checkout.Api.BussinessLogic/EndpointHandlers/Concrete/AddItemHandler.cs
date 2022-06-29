@@ -1,8 +1,8 @@
 ﻿using Checkout.Api.BussinessLogic.Dtos.Request;
 using Checkout.Api.BussinessLogic.EndpointHandlers.Interfaces;
-using Checkout.Api.BussinessLogic.Utils;
 using CheckoutApi.DataAccess.UnitOfWorkRelated.Interfaces;
 using CheckoutApi.DataModels;
+using CheckoutApi.Shared.Utils;
 using System.Linq.Expressions;
 
 namespace Checkout.Api.BussinessLogic.EndpointHandlers.Concrete
@@ -36,10 +36,9 @@ namespace Checkout.Api.BussinessLogic.EndpointHandlers.Concrete
 
             var itemInBaskets = new ItemsInBasket
             {
-                Basket = basket,
+                BasketId = basket.ID,
                 Item = item,
             };
-
             item.ItemsInBaskets.Add(itemInBaskets);
 
             _unitOfWork.ItemRepository.Add(item);

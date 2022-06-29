@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CheckoutApi.DataAccess\CheckoutApi.DataAccess.csproj" />
+    <ProjectReference Include="..\CheckoutApi.Shared\CheckoutApi.Shared.csproj" />
   </ItemGroup>
 
 </Project>
