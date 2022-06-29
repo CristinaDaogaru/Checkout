@@ -38,9 +38,6 @@ namespace CheckoutApi.DataAccess.Migrations
                     b.Property<bool>("IsPaid")
                         .HasColumnType("bit");
 
-                    b.Property<decimal>("TotalSpentAmount")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("ID");
 
                     b.HasIndex("CustomerId");

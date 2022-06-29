@@ -1,5 +1,6 @@
 using Checkout.Api.BussinessLogic.Startup;
 using CheckoutApi.DataAccess.Startup;
+using CheckoutApi.Shared.Settings;
 
 var _apiName = "QualysoftAPI.WebApp";
 var _apiVersion = "v1";
@@ -12,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointHandlers();
 builder.Services.AddDataAccess(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.Configure<CheckoutApiSettings>(builder.Configuration.GetSection("CheckoutSetting"));
 
 var app = builder.Build();
 

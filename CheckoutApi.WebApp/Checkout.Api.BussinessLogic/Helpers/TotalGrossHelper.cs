@@ -2,11 +2,10 @@
 {
     public static class TotalGrossHelper
     {
-        private static readonly int _vat = 10;
-        public static decimal CalculateTotalGross(decimal totalNet)
+        public static decimal CalculateTotalGross(decimal totalNet, int vatPercentage)
         {
-
-            return totalNet * _vat / 100;
+            var vat = totalNet * vatPercentage / 100;
+            return totalNet + vat;
         }
     }
 }

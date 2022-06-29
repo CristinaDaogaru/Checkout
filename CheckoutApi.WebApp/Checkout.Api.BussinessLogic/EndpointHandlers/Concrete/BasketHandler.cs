@@ -2,9 +2,11 @@
 using Checkout.Api.BussinessLogic.Dtos.Response;
 using Checkout.Api.BussinessLogic.EndpointHandlers.Interfaces;
 using Checkout.Api.BussinessLogic.Helpers;
-using Checkout.Api.BussinessLogic.Utils;
 using CheckoutApi.DataAccess.UnitOfWorkRelated.Interfaces;
 using CheckoutApi.DataModels;
+using CheckoutApi.Shared.Settings;
+using CheckoutApi.Shared.Utils;
+using Microsoft.Extensions.Options;
 using System.Linq.Expressions;
 
 namespace Checkout.Api.BussinessLogic.EndpointHandlers.Concrete
@@ -12,10 +14,11 @@ namespace Checkout.Api.BussinessLogic.EndpointHandlers.Concrete
     public class BasketHandler : IBasketHandler
     {
         private readonly IUnitOfWork _unitOfWork;
-
-        public BasketHandler(IUnitOfWork unitOfWork)
+        private readonly CheckoutApiSettings _checkoutApiSettings;
+        public BasketHandler(IUnitOfWork unitOfWork, IOptions<CheckoutApiSettings> checkoutApiSettings)
         {
             _unitOfWork = unitOfWork;
+            _checkoutApiSettings = checkoutApiSettings.Value;
         }
 
         public async Task<Result> AddNewBasket(NewBasketDto customerDto)
@@ -56,8 +59,9 @@ namespace Checkout.Api.BussinessLogic.EndpointHandlers.Concrete
             {
                 return GetBasketNotFoundResult(id);
             }
+            var items = await GetItemsForBasket(basket.ItemsInBaskets);
+            var basketDto = CreateBasketDto(basket, items);
 
-            var basketDto = CreateBasketDto(basket);
             return Result.Ok(basketDto);
         }
         public async Task<Result> Checkout(CheckoutDto checkout, int id)
@@ -81,38 +85,38 @@ namespace Checkout.Api.BussinessLogic.EndpointHandlers.Concrete
             return Result.Ok();
         }
 
-        private BasketDto CreateBasketDto(Basket basket)
+        private BasketDto CreateBasketDto(Basket basket, IEnumerable<Item> items)
         {
-            var totalNet = GetTotalNet(basket.ItemsInBaskets);
+            var totalNet = GetTotalNet(items);
             return new BasketDto
             {
                 Id = basket.ID,
                 Customer = basket.Customer.FullName,
                 PaysVAT = basket.Customer.PaysVAT,
-                Items = GetItems(basket.ItemsInBaskets),
-                TotalGross = TotalGrossHelper.CalculateTotalGross(totalNet),
+                Items = GetItems(items),
+                TotalGross = TotalGrossHelper.CalculateTotalGross(totalNet, _checkoutApiSettings.VAT),
                 TotalNet = totalNet
             };
         }
 
-        private IEnumerable<ItemDto> GetItems(IEnumerable<ItemsInBasket> items)
+        private IEnumerable<ItemDto> GetItems(IEnumerable<Item> items)
         {
             foreach (var item in items)
             {
                 yield return new ItemDto
                 {
-                    Name = item.Item.Name,
-                    Price = item.Item.Price,
+                    Name = item.Name,
+                    Price = item.Price,
                 };
             }
         }
 
-        private decimal GetTotalNet(IEnumerable<ItemsInBasket> items)
+        private decimal GetTotalNet(IEnumerable<Item> items)
         {
             var totalNet = (decimal)0;
             foreach (var item in items)
             {
-                totalNet += item.Item.Price;
+                totalNet += item.Price;
             }
 
             return totalNet;
@@ -123,6 +127,16 @@ namespace Checkout.Api.BussinessLogic.EndpointHandlers.Concrete
             return Result.Fail<BasketDto>($"Basket with id {id} notFound");
         }
 
+        private async Task<IEnumerable<Item>> GetItemsForBasket(IEnumerable<ItemsInBasket> itemsInBaskets)
+        {
+            var itemsIds = itemsInBaskets.Select(item => item.ItemId);
+
+            return await _unitOfWork.ItemRepository.GetAllByAsync(
+                whereFilters: new Expression<Func<Item, bool>>[] {
+                  item => itemsIds.Contains(item.ID)
+                },
+                asNoTracking: true);
+        }
 
     }
 }
